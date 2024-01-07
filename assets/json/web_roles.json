@@ -1,0 +1,20 @@
+{
+    "CLOSED":-3,
+    "BANNED":-2,
+    "UNCONFIRMED":-1,
+    "USER":0,
+    "VIP":1,
+    "VIP+":3,
+    "VIP++":5,
+    "DONATOR":10,
+    "DONATOR+":15,
+    "DONATOR++":20,
+    "MODERATOR":25,
+    "GAME_TESTER":30,
+    "GAME_MASTER":40,
+    "GAME_MASTER+":500,
+    "COMM_MANAG":900,
+    "GAME_ADMIN":100,
+    "GAME_OWNER":1337,
+    "ROOT":30000
+ }

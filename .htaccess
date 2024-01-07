@@ -1,0 +1,65 @@
+Options -Indexes
+#IndexIgnore *.php *.html *.js *.css *.jpg *.png *.mp4 *.ttf
+
+RewriteEngine on
+RewriteCond %{QUERY_STRING} ^([0-9]+)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)\?([0-9]+)(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^([0-9]+\.[0-9])(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)\?([0-9]+\.[0-9])(.*)$ [NC]
+RewriteRule ^(.*)$ %{HTTP_REFERER} [L]
+
+RewriteCond %{HTTPS} on
+
+RewriteCond %{HTTP_HOST} ^(www.)?insane.com$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(|/)$ ./
+RewriteRule ^index(|/)$ ./index.php
+RewriteRule ^join(|/)$ ./index.php?to=join
+RewriteRule ^logout(|/)$ ./index.php?to=logout
+RewriteRule ^register(|/)$ ./index.php?to=register
+RewriteRule ^profile(|/)$ ./index.php?to=profile
+RewriteRule ^shop(|/)$ ./index.php?to=shop
+RewriteRule ^coins(|/)$ ./index.php?to=coins
+RewriteRule ^roulette(|/)$ ./index.php?to=roulette
+RewriteRule ^cart(|/)$ ./index.php?to=cart
+RewriteRule ^process(|/)$ ./php/query.php
+RewriteRule ^blog(|/)$ ./index.php?to=blog
+
+<FilesMatch "\.(htaccess|htpasswd|phps|fla|psd|log|sh)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+#Evitar escaneos, manipulacion e inyeccion SQL (SQL, XSS, etc)
+    
+    RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^(-|\.|â€™) [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget)(.*) [NC,OR]
+    RewriteCond %{HTTP_REFERER} ^(.*)(%00|%08|%09|%0A|%0B|%0C|%0D|%0E|%0F|%2C|<|>|â€™|%3C|%3E|%26%23|%27|%60)(.*) [NC,OR]
+    RewriteCond %{QUERY_STRING} ^(.*)(%00|%08|%09|%0A|%0B|%0C|%0D|%0E|%0F|%2C|%3C|%3E|%27|%26%23|%60)(.*) [NC,OR]
+    RewriteCond %{HTTP_COOKIE} ^(.*)(<|>|â€™|%3C|%3E|%27)(.*) [NC]
+    #RewriteRule ^(.*)$ index.php [NC]
+     
+    #Evita manipulacion en la URL
+     
+    RewriteCond %{THE_REQUEST} ^.*(\\r|\\n|%0A|%0D).* [NC,OR]
+    RewriteCond %{HTTP_REFERER} ^(.*)(<|>|â€™|%0A|%0D|%27|%3C|%3E|%00).* [NC,OR]
+    RewriteCond %{HTTP_COOKIE} ^.*(<|>|â€™|%0A|%0D|%27|%3C|%3E|%00).* [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/(,|;|:|<|>|â€>|â€<|/|\\\.\.\\).{0,9999}.* [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget).* [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^.*(winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner).* [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^.*(libwww|curl|wget|python|nikto|scan).* [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^.*(<|>|â€™|%0A|%0D|%27|%3C|%3E|%00).* [NC,OR]
+    RewriteCond %{QUERY_STRING} ^.*(;|<|>|â€™|â€|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark).* [NC,OR]
+    RewriteCond %{QUERY_STRING} ^.*(localhost|loopback|127\.0\.0\.1).* [NC,OR]
+    RewriteCond %{QUERY_STRING} ^.*(<|>|â€™|%0A|%0D|%27|%3C|%3E|%00).* [NC]
+    #RewriteRule ^(.*)$ index.php [NC]
+     
+    #Complica los ataques Remote File include y Local File include
+    RewriteCond %{REQUEST_METHOD} GET
+
+php_value max_execution_time 300
+

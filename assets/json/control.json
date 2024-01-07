@@ -1,0 +1,78 @@
+{
+   "name":"Insane",
+   "domain":"http://localhost/low_cost_website",
+   "email":"support@Insane.com",
+   "status":true,
+   "web_shop":{
+      "status":true
+   },
+   "database":{
+      "DB_HOST": "localhost",
+      "DB_PORT": "",
+      "DB_USER": "root",
+      "DB_PASS": "",
+      "DB_NAME": "lowcost_wb",
+      "DB_SRV": "mysql"
+   },
+   "payments":{
+      "paypal":{
+         "status":false,
+         "mode":"sandbox",
+         "id":"AU0SJ0l6AWPkSEQ-xSH_yhLJj2x7fbM6uZC1P0X8jGhYosB2KVBVC7dYdTfK96XYBqUPnySj5ybKlI_N",
+         "secret":"EDF6aBujeyzqFARhH6eK-abG5i-M6Ei-VVVOTROZJ95MHQzk3skon6BG4u63qlstVnnMKPCD_FMTt05l",
+         "currency":"EUR",
+         "currency_symbol":"€",
+         "coins":{
+            "bonus":0
+         }
+      },
+      "stripe":{
+         "status":true,
+         "publishable_key":"pk_test_51JDiY5DB2mClVIGrwaMlnY1Y1BYAjev3ZAp2FdJifHJrtgkYAJQ9UhaZiT2BOAEDYiuEonVoXzE5D9wamXm7nbiD0074cxF44U",
+         "secret_key":"sk_test_51JDiY5DB2mClVIGr0K5n6O7LEaKQsmKJP9QW2NARhei9Flwe71IHPquDI7bz52yPX0WM6LIjAmTJ2DAwov9iCfTy00bdV8c5AX",
+         "currency":"EUR",
+         "currency_symbol":"€",
+         "coins":{
+            "bonus":0
+         }
+      },
+      "binance":{
+         "status":false,
+         "currency":"USDT",
+         "currency_symbol":"USDT",
+         "coins":{
+            "bonus":0
+         }
+      },
+      "paysafecard":{
+         "status":false,
+         "currency":"EUR",
+         "currency_symbol":"€",
+         "coins":{
+            "bonus":0
+         }
+      }
+   },
+   "wheel":{
+      "price": 100
+   },
+   "calendar":{
+      "status":false
+   },
+   "datetime":{
+      "timezone":"America\/Bogota",
+      "time-format":"g:i:s A",
+      "date-format":"d\/m\/Y"
+   },
+   "social":{
+      "instagram":"",
+      "twitter":"",
+      "facebook":"",
+      "youtube":"",
+      "discord":"",
+      "discord_id":""
+   },
+   "server":{
+      "IP":""
+   }
+}
